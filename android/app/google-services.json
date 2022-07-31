@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "487341729545",
+    "project_id": "up-companion-app",
+    "storage_bucket": "up-companion-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:487341729545:android:5bd393962b78e281c3d5d8",
+        "android_client_info": {
+          "package_name": "com.nesvier.upcapp.up_companion_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "487341729545-lo492dg3qbcetf67ajm5ajkvudullj3o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtnQDpxY8yror1jxnZJuXg0jhAyD-dSUY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "487341729545-lo492dg3qbcetf67ajm5ajkvudullj3o.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "487341729545-ug0og9qt18hhn422jqppceo2ij2m727q.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.nesvier.upcapp.upCompanionApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
