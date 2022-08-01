@@ -41,6 +41,10 @@ dependencies:
   # A Flutter plugin to use the Firebase Authentication API.
   firebase_auth: ^3.6.1
 
+  # Equatable overrides == and hashCode for you so you don't have to waste your
+  # time writing lots of boilerplate code.
+  equatable: ^2.0.3
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
