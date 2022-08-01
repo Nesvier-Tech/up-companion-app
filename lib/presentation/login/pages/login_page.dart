@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:up_companion_app/domain/login/auth/use_cases/create_user_with_email_and_password.dart';
 
 import '../../../utils/validators/text_form_field_validator.dart';
 import '../../dashboard/pages/dashboard.dart';

@@ -26,7 +26,7 @@ void main() {
   });
 
   test(
-    'UserEntity should require three fields: id, username, and email. '
+    'UserEntity should require the three fields: id, username, and email. '
     'That is, they should not be null.',
     () {
       //* Act

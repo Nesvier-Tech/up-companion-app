@@ -5,5 +5,8 @@ import '../../../../utils/failures/failure_intf.dart';
 abstract class AuthRepoIntf {
   const AuthRepoIntf();
 
-  Future<Either<FailureIntf, void>> createUserWithEmailAndPassword();
+  Future<Either<FailureIntf, Null>> createUserWithEmailAndPassword({
+    required String email,
+    required String password,
+  });
 }
