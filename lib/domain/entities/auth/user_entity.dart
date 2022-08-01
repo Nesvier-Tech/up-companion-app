@@ -4,7 +4,7 @@ import '../../../utils/constants/gender.dart';
 import '../../../utils/constants/religion.dart';
 
 class UserEntity extends Equatable {
-  final String id;
+  final String? id;
   final String username;
   final String email;
 

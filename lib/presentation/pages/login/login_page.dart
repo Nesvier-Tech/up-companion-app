@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:up_companion_app/utils/validators/text_form_field_validator.dart';
 
 import '../dashboard/dashboard.dart';
 import '../forgot_password/forgot_password.dart';
@@ -85,6 +86,7 @@ class _LoginFormState extends State<LoginForm> {
   final _passwordController = TextEditingController();
   String? _email;
   String? _password;
+  final _validator = const TextFormFieldValidator();
 
   @override
   void dispose() {
@@ -108,6 +110,7 @@ class _LoginFormState extends State<LoginForm> {
             ),
             keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.next,
+            validator: _validator,
             onSaved: (newValue) => _email = newValue,
           ),
           const SizedBox(height: 10),
@@ -119,6 +122,7 @@ class _LoginFormState extends State<LoginForm> {
             ),
             keyboardType: TextInputType.visiblePassword,
             textInputAction: TextInputAction.done,
+            validator: _validator,
             onSaved: (newValue) => _password = newValue,
           ),
           const SizedBox(height: 5),
@@ -141,11 +145,17 @@ class _LoginFormState extends State<LoginForm> {
             width: 150,
             child: ElevatedButton(
               onPressed: () {
-                _formKey.currentState?.save();
-                print('email: $_email');
-                print('password: $_password');
+                if (_formKey.currentState!.validate()) {
+                  _formKey.currentState?.save();
 
-                Navigator.of(context).pushNamed(Dashboard.routeName);
+                  _emailController.clear();
+                  _passwordController.clear();
+
+                  print('email: $_email');
+                  print('password: $_password');
+
+                  Navigator.of(context).pushNamed(Dashboard.routeName);
+                }
               },
               child: const Text('Login'),
             ),
