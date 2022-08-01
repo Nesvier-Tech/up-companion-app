@@ -34,15 +34,15 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
 
-  # A Flutter plugin to use the Firebase Core API,
-  # which enables connecting to multiple Firebase apps.
+  # Flutter plugin for Firebase Core, enabling connecting to multiple Firebase apps.
   firebase_core: ^1.20.0
 
-  # A Flutter plugin to use the Firebase Authentication API.
+  # Flutter plugin for Firebase Auth, enabling Android and iOS authentication using passwords,
+  # phone numbers and identity providers like Google, Facebook and Twitter.
   firebase_auth: ^3.6.1
 
-  # Equatable overrides == and hashCode for you so you don't have to waste your
-  # time writing lots of boilerplate code.
+  # A Dart package that helps to implement value based equality
+  # without needing to explicitly override == and hashCode.
   equatable: ^2.0.3
 
 dev_dependencies:

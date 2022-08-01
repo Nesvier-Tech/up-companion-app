@@ -50,6 +50,7 @@ class DefaultFirebaseOptions {
     projectId: 'up-companion-app',
     authDomain: 'up-companion-app.firebaseapp.com',
     storageBucket: 'up-companion-app.appspot.com',
+    measurementId: 'G-NFG1MZBSLK',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
@@ -66,8 +67,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '487341729545',
     projectId: 'up-companion-app',
     storageBucket: 'up-companion-app.appspot.com',
-    iosClientId:
-        '487341729545-ug0og9qt18hhn422jqppceo2ij2m727q.apps.googleusercontent.com',
+    iosClientId: '487341729545-ug0og9qt18hhn422jqppceo2ij2m727q.apps.googleusercontent.com',
     iosBundleId: 'com.nesvier.upcapp.upCompanionApp',
   );
 
@@ -77,8 +77,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '487341729545',
     projectId: 'up-companion-app',
     storageBucket: 'up-companion-app.appspot.com',
-    iosClientId:
-        '487341729545-ug0og9qt18hhn422jqppceo2ij2m727q.apps.googleusercontent.com',
+    iosClientId: '487341729545-ug0og9qt18hhn422jqppceo2ij2m727q.apps.googleusercontent.com',
     iosBundleId: 'com.nesvier.upcapp.upCompanionApp',
   );
 }

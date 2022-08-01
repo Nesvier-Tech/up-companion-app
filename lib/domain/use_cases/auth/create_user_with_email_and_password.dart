@@ -1,0 +1,3 @@
+class CreateUserWithEmailAndPassword {
+  const CreateUserWithEmailAndPassword();
+}
