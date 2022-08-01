@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
-import '../../../utils/constants/gender.dart';
-import '../../../utils/constants/religion.dart';
+import '../../../../utils/constants/gender.dart';
+import '../../../../utils/constants/religion.dart';
 
 class UserEntity extends Equatable {
   final String? id;

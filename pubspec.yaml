@@ -45,6 +45,10 @@ dependencies:
   # without needing to explicitly override == and hashCode.
   equatable: ^2.0.3
 
+  # Functional Programming in Dart. Purify your Dart code using efficient
+  # immutable data structures, monads, lenses and other FP tools.
+  dartz: ^0.10.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

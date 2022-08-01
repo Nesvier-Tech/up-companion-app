@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:up_companion_app/presentation/pages/errors/page_not_found/page_not_found_page.dart';
-import 'package:up_companion_app/presentation/pages/login/login_page.dart';
-import 'package:up_companion_app/presentation/pages/sign_up/sign_up_page.dart';
+
+import '../../errors/pages/page_not_found_page.dart';
+import '../../login/pages/login_page.dart';
+import '../../sign_up/pages/sign_up_page.dart';
 
 class HomePage extends StatelessWidget {
   static const routeName = '/';

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../pages/dashboard/dashboard.dart';
-import '../pages/errors/page_not_found/page_not_found_page.dart';
-import '../pages/forgot_password/forgot_password.dart';
-import '../pages/home/home_page.dart';
-import '../pages/login/login_page.dart';
-import '../pages/sign_up/sign_up_page.dart';
+import '../../dashboard/pages/dashboard.dart';
+import '../../errors/pages/page_not_found_page.dart';
+import '../../forgot_password/pages/forgot_password.dart';
+import '../../home/pages/home_page.dart';
+import '../../login/pages/login_page.dart';
+import '../../sign_up/pages/sign_up_page.dart';
 
 class AppRouter {
   const AppRouter();

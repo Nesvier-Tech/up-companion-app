@@ -1,0 +1,3 @@
+class NoProps {
+  const NoProps();
+}

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:up_companion_app/utils/validators/text_form_field_validator.dart';
 
-import '../dashboard/dashboard.dart';
-import '../forgot_password/forgot_password.dart';
-import '../sign_up/sign_up_page.dart';
+import '../../../utils/validators/text_form_field_validator.dart';
+import '../../dashboard/pages/dashboard.dart';
+import '../../forgot_password/pages/forgot_password.dart';
+import '../../sign_up/pages/sign_up_page.dart';
 
 class LoginPage extends StatelessWidget {
   static const routeName = '/login-page';

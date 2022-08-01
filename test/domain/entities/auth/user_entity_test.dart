@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:up_companion_app/domain/entities/auth/user_entity.dart';
+import 'package:up_companion_app/domain/login/auth/entities/user_entity.dart';
 
 void main() {
   late final String tId;
