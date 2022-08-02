@@ -4,31 +4,30 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../../../../domain/login/auth/repo_intf/auth_repo_intf.dart';
 import '../../../../utils/failures/failure_intf.dart';
 import '../../../../utils/failures/firebase_auth_failure.dart';
-import '../../../../utils/service_locators/injection_container.dart';
 
 class AuthRepoImpl implements AuthRepoIntf {
-  const AuthRepoImpl();
+  final FirebaseAuth firebaseAuth;
+
+  const AuthRepoImpl({required this.firebaseAuth});
 
   @override
-  Future<Either<FailureIntf, Null>> createUserWithEmailAndPassword({
+  Future<Either<FailureIntf, UserCredential>> createUserWithEmailAndPassword({
     required String email,
     required String password,
   }) async {
-    late final FirebaseAuth firebaseAuth;
     late final UserCredential userCredential;
 
     try {
-      firebaseAuth = getIt<FirebaseAuth>();
       userCredential = await firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
 
-      return const Right(null);
+      return Right(userCredential);
     } catch (e) {
       print(e);
 
-      return const Left(FirebaseAuthFailure());
+      return Left(FirebaseAuthFailure(properties: [e]));
     }
   }
 }

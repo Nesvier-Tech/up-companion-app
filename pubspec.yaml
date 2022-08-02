@@ -53,6 +53,10 @@ dependencies:
   # concrete implementation and to access the concrete implementation from everywhere in your App
   get_it: ^7.2.0
 
+  # Flutter Widgets that make it easy to implement the BLoC (Business Logic Component)
+  # design pattern. Built to be used with the bloc state management package.
+  flutter_bloc: ^8.0.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -63,6 +67,10 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+
+  # A testing library which makes it easy to test blocs. Built to be used
+  # with the bloc state management package.
+  bloc_test: ^9.0.3
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

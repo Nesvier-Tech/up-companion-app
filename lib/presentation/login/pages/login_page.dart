@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:up_companion_app/domain/login/auth/use_cases/create_user_with_email_and_password.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../utils/service_locators/injection_container.dart';
 import '../../../utils/validators/text_form_field_validator.dart';
-import '../../dashboard/pages/dashboard.dart';
 import '../../forgot_password/pages/forgot_password.dart';
 import '../../sign_up/pages/sign_up_page.dart';
+import '../state_holders/cubit/login_cubit.dart';
 
 class LoginPage extends StatelessWidget {
   static const routeName = '/login-page';
@@ -88,6 +89,7 @@ class _LoginFormState extends State<LoginForm> {
   String? _email;
   String? _password;
   final _validator = const TextFormFieldValidator();
+  String _dialogMsg = 'Unchanged';
 
   @override
   void dispose() {
@@ -144,21 +146,60 @@ class _LoginFormState extends State<LoginForm> {
           const SizedBox(height: 10),
           SizedBox(
             width: 150,
-            child: ElevatedButton(
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  _formKey.currentState?.save();
+            child: BlocProvider(
+              create: (_) => getIt<LoginCubit>(),
+              child: Builder(
+                builder: (context) => BlocListener<LoginCubit, LoginState>(
+                  listener: (context, state) {
+                    print('Bloc listener: $state');
 
-                  _emailController.clear();
-                  _passwordController.clear();
+                    final isSuccessOrFailureState =
+                        (state is LoginLoadSuccess) ||
+                            (state is LoginLoadFailure);
 
-                  print('email: $_email');
-                  print('password: $_password');
+                    if (isSuccessOrFailureState) {
+                      showDialog<String>(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          title: const Text('Firebase Auth Response'),
+                          content: Text('$state'),
+                          actions: <Widget>[
+                            TextButton(
+                              onPressed: () => Navigator.pop(context, 'Cancel'),
+                              child: const Text('Cancel'),
+                            ),
+                            TextButton(
+                              onPressed: () => Navigator.pop(context, 'Okay'),
+                              child: const Text('Okay'),
+                            ),
+                          ],
+                        ),
+                      );
+                    }
+                  },
+                  child: ElevatedButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        _formKey.currentState?.save();
 
-                  Navigator.of(context).pushNamed(Dashboard.routeName);
-                }
-              },
-              child: const Text('Login'),
+                        _emailController.clear();
+                        _passwordController.clear();
+
+                        print('email: $_email');
+                        print('password: $_password');
+
+                        BlocProvider.of<LoginCubit>(context).loginUser(
+                          email: _email!,
+                          password: _password!,
+                        );
+
+                        // Navigator.of(context).pushNamed(Dashboard.routeName);
+                      }
+                    },
+                    child: const Text('Login'),
+                  ),
+                ),
+              ),
             ),
           ),
         ],

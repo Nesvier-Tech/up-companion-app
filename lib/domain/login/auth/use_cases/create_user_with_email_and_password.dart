@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../../../utils/failures/failure_intf.dart';
 import '../repo_intf/auth_repo_intf.dart';
@@ -8,7 +9,7 @@ class CreateUserWithEmailAndPassword {
 
   const CreateUserWithEmailAndPassword({required this.authRepo});
 
-  Future<Either<FailureIntf, Null>> call({
+  Future<Either<FailureIntf, UserCredential>> call({
     required String email,
     required String password,
   }) async {
