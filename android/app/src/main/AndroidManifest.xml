@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.nesvier.upcapp.up_companion_app">
+    <uses-permission android:name="android.permission.INTERNET" />
    <application
         android:label="up_companion_app"
         android:name="${applicationName}"
