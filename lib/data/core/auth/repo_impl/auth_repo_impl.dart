@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import '../../../../domain/login/auth/repo_intf/auth_repo_intf.dart';
+import '../../../../domain/core/auth/repo_intf/auth_repo_intf.dart';
 import '../../../../utils/failures/failure_intf.dart';
 import '../../../../utils/failures/firebase_auth_failure.dart';
 
@@ -24,10 +24,10 @@ class AuthRepoImpl implements AuthRepoIntf {
       );
 
       return Right(userCredential);
-    } catch (e) {
-      print(e);
+    } catch (error) {
+      print(error);
 
-      return Left(FirebaseAuthFailure(properties: [e]));
+      return Left(FirebaseAuthFailure(properties: [error]));
     }
   }
 }

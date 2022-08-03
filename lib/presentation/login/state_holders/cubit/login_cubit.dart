@@ -4,7 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import '../../../../domain/login/auth/use_cases/create_user_with_email_and_password.dart';
+import '../../../../domain/core/auth/use_cases/create_user_with_email_and_password.dart';
 import '../../../../utils/failures/failure_intf.dart';
 
 part 'login_state.dart';
