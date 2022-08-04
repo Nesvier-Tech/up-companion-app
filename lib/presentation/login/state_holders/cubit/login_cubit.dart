@@ -3,6 +3,9 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:up_companion_app/domain/core/network/repo_intf/network_repo_intf.dart';
+import 'package:up_companion_app/domain/core/network/use_cases/has_internet_connection.dart';
+import 'package:up_companion_app/utils/service_locators/injection_container.dart';
 
 import '../../../../domain/core/auth/use_cases/create_user_with_email_and_password.dart';
 import '../../../../utils/failures/failure_intf.dart';
@@ -21,7 +24,12 @@ class LoginCubit extends Cubit<LoginState> {
     required String password,
   }) async {
     emit(const LoginInitial());
-    emit(const LoginLoadInProgress());
+    // emit(const LoginLoadInProgress());
+
+    final hasInternetConnection = await getIt<HasInternetConnection>()();
+    if (hasInternetConnection) {
+      emit(const LoginLoadInProgress());
+    }
 
     final Either<FailureIntf, UserCredential> userCredential =
         await createUserWithEmailAndPasswordUseCase(

@@ -57,6 +57,14 @@ dependencies:
   # design pattern. Built to be used with the bloc state management package.
   flutter_bloc: ^8.0.1
 
+  # Permission plugin for Flutter. This plugin provides a cross-platform (iOS, Android)
+  # API to request and check permissions.
+  permission_handler: ^10.0.0
+
+  # A pure Dart library that checks for internet by opening a socket to a list of specified
+  # addresses, each with individual port and timeout. Defaults are provided for convenience.
+  internet_connection_checker: ^0.0.1+4
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

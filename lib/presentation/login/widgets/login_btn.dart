@@ -39,7 +39,7 @@ class LoginBtn extends StatelessWidget {
                 } else if (state is LoginLoadInProgress) {
                   _showDialog(
                     context: context,
-                    message: 'Loading...',
+                    message: 'Loading... (Has Internet Connection!)',
                   );
                 } else if (isSuccessOrFailureState) {
                   Navigator.pop(context);

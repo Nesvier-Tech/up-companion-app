@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import 'firebase_options.dart';
 import 'presentation/core/router/app_router.dart';
@@ -10,6 +11,10 @@ Future<void> main() async {
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   di.init();
+
+  if (await Permission.camera.status.isDenied) {
+    await Permission.camera.request();
+  }
 
   runApp(const App());
 }
