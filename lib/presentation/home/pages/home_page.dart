@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../errors/pages/page_not_found_page.dart';
 import '../../login/pages/login_page.dart';
@@ -38,12 +39,31 @@ class HomePage extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             ElevatedButton(
+              onPressed: () => _showLoadingDialog(context),
+              child: const Text('Loading Dialog'),
+            ),
+            const SizedBox(height: 10),
+            ElevatedButton(
               onPressed: () =>
                   Navigator.of(context).pushNamed(PageNotFoundPage.routeName),
               child: const Text('Page Not Found Page'),
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Future<void> _showLoadingDialog(BuildContext context) {
+    return showDialog(
+      context: context,
+      builder: (_) => SimpleDialog(
+        children: [
+          LottieBuilder.asset(
+            'assets/lotties/loading.json',
+            frameRate: FrameRate.max,
+          ),
+        ],
       ),
     );
   }

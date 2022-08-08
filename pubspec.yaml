@@ -37,6 +37,10 @@ dependencies:
   # Flutter plugin for Firebase Core, enabling connecting to multiple Firebase apps.
   firebase_core: ^1.20.0
 
+  # App Check works alongside other Firebase services to help protect your backend resources
+  # from abuse, such as billing fraud or phishing.
+  firebase_app_check: ^0.0.6+18
+
   # Flutter plugin for Firebase Auth, enabling Android and iOS authentication using passwords,
   # phone numbers and identity providers like Google, Facebook and Twitter.
   firebase_auth: ^3.6.1
@@ -65,9 +69,9 @@ dependencies:
   # addresses, each with individual port and timeout. Defaults are provided for convenience.
   internet_connection_checker: ^0.0.1+4
 
-  # App Check works alongside other Firebase services to help protect your backend resources
-  # from abuse, such as billing fraud or phishing.
-  firebase_app_check: ^0.0.6+18
+  # Render After Effects animations natively on Flutter. This package is a pure Dart
+  # implementation of a Lottie player.
+  lottie: ^1.4.1
 
 dev_dependencies:
   flutter_test:
@@ -97,6 +101,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/photos/
+    - assets/lotties/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
