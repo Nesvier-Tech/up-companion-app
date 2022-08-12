@@ -1,4 +1,4 @@
-package com.nesvier.upcapp.up_companion_app
+package com.nesvier.up_companion_app
 
 import io.flutter.embedding.android.FlutterActivity
 

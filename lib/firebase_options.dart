@@ -45,17 +45,17 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions web = FirebaseOptions(
     apiKey: 'AIzaSyCTwJIpCJMemBUVpxwWHwVfn67G2eLeKu0',
-    appId: '1:487341729545:web:549c280d5e4ac7f5c3d5d8',
+    appId: '1:487341729545:web:626faff8478edc03c3d5d8',
     messagingSenderId: '487341729545',
     projectId: 'up-companion-app',
     authDomain: 'up-companion-app.firebaseapp.com',
     storageBucket: 'up-companion-app.appspot.com',
-    measurementId: 'G-NFG1MZBSLK',
+    measurementId: 'G-28PJSYT9B4',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyAtnQDpxY8yror1jxnZJuXg0jhAyD-dSUY',
-    appId: '1:487341729545:android:5bd393962b78e281c3d5d8',
+    appId: '1:487341729545:android:fd60bd2e013e95a0c3d5d8',
     messagingSenderId: '487341729545',
     projectId: 'up-companion-app',
     storageBucket: 'up-companion-app.appspot.com',
@@ -63,21 +63,23 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyAGfIgMBGf9atpHxpjtrQ74ilWC8pFrAKk',
-    appId: '1:487341729545:ios:ced17243ce7fce0ec3d5d8',
+    appId: '1:487341729545:ios:6704dd2a3eac20c3c3d5d8',
     messagingSenderId: '487341729545',
     projectId: 'up-companion-app',
     storageBucket: 'up-companion-app.appspot.com',
-    iosClientId: '487341729545-ug0og9qt18hhn422jqppceo2ij2m727q.apps.googleusercontent.com',
-    iosBundleId: 'com.nesvier.upcapp.upCompanionApp',
+    androidClientId: '487341729545-d3e0gnseuo9fuqa6dturo556pug7dis1.apps.googleusercontent.com',
+    iosClientId: '487341729545-75agpn83qf33mvl5nb10kvj6e96ksrni.apps.googleusercontent.com',
+    iosBundleId: 'com.nesvier.upCompanionApp',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyAGfIgMBGf9atpHxpjtrQ74ilWC8pFrAKk',
-    appId: '1:487341729545:ios:ced17243ce7fce0ec3d5d8',
+    appId: '1:487341729545:ios:6704dd2a3eac20c3c3d5d8',
     messagingSenderId: '487341729545',
     projectId: 'up-companion-app',
     storageBucket: 'up-companion-app.appspot.com',
-    iosClientId: '487341729545-ug0og9qt18hhn422jqppceo2ij2m727q.apps.googleusercontent.com',
-    iosBundleId: 'com.nesvier.upcapp.upCompanionApp',
+    androidClientId: '487341729545-d3e0gnseuo9fuqa6dturo556pug7dis1.apps.googleusercontent.com',
+    iosClientId: '487341729545-75agpn83qf33mvl5nb10kvj6e96ksrni.apps.googleusercontent.com',
+    iosBundleId: 'com.nesvier.upCompanionApp',
   );
 }

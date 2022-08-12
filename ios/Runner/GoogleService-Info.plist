@@ -3,9 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>487341729545-ug0og9qt18hhn422jqppceo2ij2m727q.apps.googleusercontent.com</string>
+	<string>487341729545-75agpn83qf33mvl5nb10kvj6e96ksrni.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.487341729545-ug0og9qt18hhn422jqppceo2ij2m727q</string>
+	<string>com.googleusercontent.apps.487341729545-75agpn83qf33mvl5nb10kvj6e96ksrni</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>487341729545-d3e0gnseuo9fuqa6dturo556pug7dis1.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
 	<string>AIzaSyAGfIgMBGf9atpHxpjtrQ74ilWC8pFrAKk</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.nesvier.upcapp.upCompanionApp</string>
+	<string>com.nesvier.upCompanionApp</string>
 	<key>PROJECT_ID</key>
 	<string>up-companion-app</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:487341729545:ios:ced17243ce7fce0ec3d5d8</string>
+	<string>1:487341729545:ios:6704dd2a3eac20c3c3d5d8</string>
 </dict>
 </plist>
