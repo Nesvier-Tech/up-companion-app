@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 
+import '../../core/loading/loading_dialog.dart';
 import '../../errors/pages/page_not_found_page.dart';
 import '../../login/pages/login_page.dart';
 import '../../sign_up/pages/sign_up_page.dart';
@@ -39,7 +39,8 @@ class HomePage extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             ElevatedButton(
-              onPressed: () => _showLoadingDialog(context),
+              onPressed: () =>
+                  LoadingDialog.showLoadingDialog(context: context),
               child: const Text('Loading Dialog'),
             ),
             const SizedBox(height: 10),
@@ -50,20 +51,6 @@ class HomePage extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  Future<void> _showLoadingDialog(BuildContext context) {
-    return showDialog(
-      context: context,
-      builder: (_) => SimpleDialog(
-        children: [
-          LottieBuilder.asset(
-            'assets/lotties/loading.json',
-            frameRate: FrameRate.max,
-          ),
-        ],
       ),
     );
   }

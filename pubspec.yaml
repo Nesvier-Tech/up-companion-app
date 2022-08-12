@@ -73,6 +73,10 @@ dependencies:
   # implementation of a Lottie player.
   lottie: ^1.4.1
 
+  # Rive 2 Flutter Runtime. This package provides runtime functionality for playing back
+  # and interacting with animations built with the Rive editor available at https://rive.app.
+  rive: ^0.9.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -102,6 +106,7 @@ flutter:
   assets:
     - assets/photos/
     - assets/lotties/
+    - assets/rive/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
