@@ -2,6 +2,6 @@ import 'failure_intf.dart';
 
 class FirebaseAuthFailure extends FailureIntf {
   const FirebaseAuthFailure({
-    properties = const <Object>[],
+    Map<String, dynamic> properties = const <String, dynamic>{},
   }) : super(properties: properties);
 }

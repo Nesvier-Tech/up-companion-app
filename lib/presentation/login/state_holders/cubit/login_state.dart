@@ -1,9 +1,9 @@
 part of 'login_cubit.dart';
 
 abstract class LoginState extends Equatable {
-  final List<Object> properties;
+  final Map<String, dynamic> properties;
 
-  const LoginState({this.properties = const <Object>[]});
+  const LoginState({this.properties = const <String, dynamic>{}});
 
   @override
   List<Object> get props => [properties];
@@ -19,12 +19,12 @@ class LoginLoadInProgress extends LoginState {
 
 class LoginLoadSuccess extends LoginState {
   LoginLoadSuccess({
-    required UserCredential userCredential,
-  }) : super(properties: [userCredential]);
+    required UserEntity userEntity,
+  }) : super(properties: {'user-entity': userEntity});
 }
 
 class LoginLoadFailure extends LoginState {
   LoginLoadFailure({
     required FailureIntf failure,
-  }) : super(properties: [failure]);
+  }) : super(properties: {'failure': failure});
 }

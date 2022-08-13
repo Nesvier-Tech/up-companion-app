@@ -2,8 +2,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:up_companion_app/domain/core/network/repo_intf/network_repo_intf.dart';
+import 'package:up_companion_app/domain/core/auth/entities/user_entity.dart';
 import 'package:up_companion_app/domain/core/network/use_cases/has_internet_connection.dart';
 import 'package:up_companion_app/utils/service_locators/injection_container.dart';
 
@@ -13,34 +12,35 @@ import '../../../../utils/failures/failure_intf.dart';
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
-  final CreateUserWithEmailAndPassword createUserWithEmailAndPasswordUseCase;
-
   LoginCubit({
     required this.createUserWithEmailAndPasswordUseCase,
   }) : super(const LoginInitial());
+
+  final CreateUserWithEmailAndPassword createUserWithEmailAndPasswordUseCase;
 
   void loginUser({
     required String email,
     required String password,
   }) async {
-    emit(const LoginInitial());
-    // emit(const LoginLoadInProgress());
+    late final bool hasInternetConnection;
+    late final Either<FailureIntf, UserEntity> userEntity;
 
-    final hasInternetConnection = await getIt<HasInternetConnection>()();
+    emit(const LoginInitial());
+
+    hasInternetConnection = await getIt<HasInternetConnection>()();
     if (hasInternetConnection) {
       emit(const LoginLoadInProgress());
     }
 
-    final Either<FailureIntf, UserCredential> userCredential =
-        await createUserWithEmailAndPasswordUseCase(
+    userEntity = await createUserWithEmailAndPasswordUseCase(
       email: email,
       password: password,
     );
 
-    userCredential.fold((firebaseAuthFailure) {
+    userEntity.fold((firebaseAuthFailure) {
       emit(LoginLoadFailure(failure: firebaseAuthFailure));
-    }, (userCredential) {
-      emit(LoginLoadSuccess(userCredential: userCredential));
+    }, (userEntity) {
+      emit(LoginLoadSuccess(userEntity: userEntity));
     });
   }
 }

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:up_companion_app/domain/core/auth/entities/user_entity.dart';
+import 'package:up_companion_app/presentation/core/loading/loading_dialog.dart';
+import 'package:up_companion_app/utils/failures/firebase_auth_failure.dart';
 
 import '../../../utils/service_locators/injection_container.dart';
 import '../state_holders/cubit/login_cubit.dart';
@@ -29,24 +32,38 @@ class LoginBtn extends StatelessWidget {
             width: 150,
             child: BlocListener<LoginCubit, LoginState>(
               listener: (context, state) {
-                print('Bloc listener: $state');
-
                 final isSuccessOrFailureState =
                     (state is LoginLoadSuccess) || (state is LoginLoadFailure);
 
                 if (state is LoginInitial) {
                   return;
                 } else if (state is LoginLoadInProgress) {
+                  LoadingDialog.showLoadingDialog(context: context);
+                } else if (state is LoginLoadSuccess) {
+                  Navigator.pop(context);
+
+                  final UserEntity userEntity = state.properties['user-entity'];
+
                   _showDialog(
                     context: context,
-                    message: 'Loading... (Has Internet Connection!)',
+                    message: userEntity.email,
                   );
-                } else if (isSuccessOrFailureState) {
+                } else if (state is LoginLoadFailure) {
+                  Navigator.pop(context);
+
+                  final FirebaseAuthFailure failure =
+                      state.properties['failure'];
+
+                  _showDialog(
+                    context: context,
+                    message: failure.properties['message'],
+                  );
+                } else {
                   Navigator.pop(context);
 
                   _showDialog(
                     context: context,
-                    message: state.properties.toString(),
+                    message: 'Unknown Error',
                   );
                 }
               },
@@ -66,9 +83,6 @@ class LoginBtn extends StatelessWidget {
       final String email = _emailController.text;
       final String password = _passwordController.text;
 
-      print('email: $email');
-      print('password: $password');
-
       context.read<LoginCubit>().loginUser(
             email: email,
             password: password,
@@ -76,8 +90,6 @@ class LoginBtn extends StatelessWidget {
 
       _emailController.clear();
       _passwordController.clear();
-
-      // Navigator.of(context).pushNamed(Dashboard.routeName);
     }
   }
 
