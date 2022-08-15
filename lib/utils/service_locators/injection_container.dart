@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -44,6 +45,9 @@ void init() {
   // Firebase Auth
   final firebaseAuth = FirebaseAuth.instance;
   getIt.registerLazySingleton(() => firebaseAuth);
+
+  // Cloud Firestore
+  getIt.registerLazySingleton(() => FirebaseFirestore.instance);
 
   // Internet Connection Checker
   getIt.registerLazySingleton(() => InternetConnectionChecker());

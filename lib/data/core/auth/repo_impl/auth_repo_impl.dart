@@ -28,7 +28,7 @@ class AuthRepoImpl implements AuthRepoIntf {
 
       user = userCredential.user;
       userEntity = UserEntity(
-        id: user?.uid,
+        id: user?.uid ?? 'invalid-id',
         username: user?.displayName ?? 'null',
         email: user?.email ?? 'null',
       );

@@ -45,6 +45,10 @@ dependencies:
   # phone numbers and identity providers like Google, Facebook and Twitter.
   firebase_auth: ^3.6.1
 
+  # Flutter plugin for Cloud Firestore, a cloud-hosted, noSQL database with live
+  # synchronization and offline support on Android and iOS.
+  cloud_firestore: ^3.4.4
+
   # A Dart package that helps to implement value based equality
   # without needing to explicitly override == and hashCode.
   equatable: ^2.0.3
