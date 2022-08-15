@@ -25,7 +25,7 @@ class LoginBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => getIt<LoginCubit>(),
+      create: (_) => sl<LoginCubit>(),
       child: Builder(
         builder: (context) {
           return SizedBox(

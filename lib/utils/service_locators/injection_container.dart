@@ -11,44 +11,44 @@ import '../../domain/core/network/repo_intf/network_repo_intf.dart';
 import '../../domain/core/network/use_cases/has_internet_connection.dart';
 import '../../presentation/login/state_holders/cubit/login_cubit.dart';
 
-final getIt = GetIt.instance;
+final sl = GetIt.instance;
 
 void init() {
   //* Core - Network
   // Use Cases
-  getIt.registerLazySingleton(
-    () => HasInternetConnection(networkRepoIntf: getIt()),
+  sl.registerLazySingleton(
+    () => HasInternetConnection(networkRepoIntf: sl()),
   );
 
   // Repositories
-  getIt.registerLazySingleton<NetworkRepoIntf>(
-    () => NetworkRepoImpl(internetConnectionChecker: getIt()),
+  sl.registerLazySingleton<NetworkRepoIntf>(
+    () => NetworkRepoImpl(internetConnectionChecker: sl()),
   );
 
   //* Core - Auth
   // Blocs
-  getIt.registerFactory(
-    () => LoginCubit(createUserWithEmailAndPasswordUseCase: getIt()),
+  sl.registerFactory(
+    () => LoginCubit(createUserWithEmailAndPasswordUseCase: sl()),
   );
 
   // Use Cases
-  getIt.registerLazySingleton(
-    () => CreateUserWithEmailAndPassword(authRepo: getIt()),
+  sl.registerLazySingleton(
+    () => CreateUserWithEmailAndPassword(authRepo: sl()),
   );
 
   // Repositories
-  getIt.registerLazySingleton<AuthRepoIntf>(
-    () => AuthRepoImpl(firebaseAuth: getIt()),
+  sl.registerLazySingleton<AuthRepoIntf>(
+    () => AuthRepoImpl(firebaseAuth: sl()),
   );
 
   //* External
   // Firebase Auth
   final firebaseAuth = FirebaseAuth.instance;
-  getIt.registerLazySingleton(() => firebaseAuth);
+  sl.registerLazySingleton(() => firebaseAuth);
 
   // Cloud Firestore
-  getIt.registerLazySingleton(() => FirebaseFirestore.instance);
+  sl.registerLazySingleton(() => FirebaseFirestore.instance);
 
   // Internet Connection Checker
-  getIt.registerLazySingleton(() => InternetConnectionChecker());
+  sl.registerLazySingleton(() => InternetConnectionChecker());
 }

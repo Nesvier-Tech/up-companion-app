@@ -67,8 +67,10 @@ class DefaultFirebaseOptions {
     messagingSenderId: '487341729545',
     projectId: 'up-companion-app',
     storageBucket: 'up-companion-app.appspot.com',
-    androidClientId: '487341729545-d3e0gnseuo9fuqa6dturo556pug7dis1.apps.googleusercontent.com',
-    iosClientId: '487341729545-75agpn83qf33mvl5nb10kvj6e96ksrni.apps.googleusercontent.com',
+    androidClientId:
+        '487341729545-d3e0gnseuo9fuqa6dturo556pug7dis1.apps.googleusercontent.com',
+    iosClientId:
+        '487341729545-75agpn83qf33mvl5nb10kvj6e96ksrni.apps.googleusercontent.com',
     iosBundleId: 'com.nesvier.upCompanionApp',
   );
 
@@ -78,8 +80,10 @@ class DefaultFirebaseOptions {
     messagingSenderId: '487341729545',
     projectId: 'up-companion-app',
     storageBucket: 'up-companion-app.appspot.com',
-    androidClientId: '487341729545-d3e0gnseuo9fuqa6dturo556pug7dis1.apps.googleusercontent.com',
-    iosClientId: '487341729545-75agpn83qf33mvl5nb10kvj6e96ksrni.apps.googleusercontent.com',
+    androidClientId:
+        '487341729545-d3e0gnseuo9fuqa6dturo556pug7dis1.apps.googleusercontent.com',
+    iosClientId:
+        '487341729545-75agpn83qf33mvl5nb10kvj6e96ksrni.apps.googleusercontent.com',
     iosBundleId: 'com.nesvier.upCompanionApp',
   );
 }

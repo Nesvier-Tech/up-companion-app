@@ -27,7 +27,7 @@ class LoginCubit extends Cubit<LoginState> {
 
     emit(const LoginInitial());
 
-    hasInternetConnection = await getIt<HasInternetConnection>()();
+    hasInternetConnection = await sl<HasInternetConnection>()();
     if (hasInternetConnection) {
       emit(const LoginLoadInProgress());
     }
