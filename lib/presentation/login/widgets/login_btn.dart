@@ -32,9 +32,6 @@ class LoginBtn extends StatelessWidget {
             width: 150,
             child: BlocListener<LoginCubit, LoginState>(
               listener: (context, state) {
-                final isSuccessOrFailureState =
-                    (state is LoginLoadSuccess) || (state is LoginLoadFailure);
-
                 if (state is LoginInitial) {
                   return;
                 } else if (state is LoginLoadInProgress) {

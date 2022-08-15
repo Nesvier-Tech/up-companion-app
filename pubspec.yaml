@@ -77,6 +77,10 @@ dependencies:
   # and interacting with animations built with the Rive editor available at https://rive.app.
   rive: ^0.9.1
 
+  # A declarative router for Flutter based on Navigation 2 supporting deep linking,
+  # data-driven routes and more.
+  go_router: ^4.2.7
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

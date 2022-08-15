@@ -1,16 +1,24 @@
 import 'package:flutter/material.dart';
 
 class PageNotFoundPage extends StatelessWidget {
-  static const routeName = 'page-not-found-page';
+  const PageNotFoundPage({
+    Key? key,
+    this.exception,
+  }) : super(key: key);
 
-  const PageNotFoundPage({Key? key}) : super(key: key);
+  static const routeName = '/page-not-found-page';
+  final Exception? exception;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Page Not Found')),
-      body: const Center(
-        child: Text('Hello World!'),
+      body: Center(
+        child: Text(
+          exception == null
+              ? 'No exception details found.'
+              : exception.toString(),
+        ),
       ),
     );
   }
