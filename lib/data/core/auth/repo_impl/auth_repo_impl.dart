@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
+import 'package:up_companion_app/utils/constants/up_campuses.dart';
 
 import '../../../../domain/core/auth/entities/user_entity.dart';
 import '../../../../domain/core/auth/repo_intf/auth_repo_intf.dart';
@@ -39,9 +40,11 @@ class AuthRepoImpl implements AuthRepoIntf {
       // Build the user entity.
       user = userCredential.user;
       userEntity = UserEntity(
-        id: user?.uid ?? 'invalid-id',
+        id: user?.uid ?? 'null',
         username: user?.displayName ?? 'null',
         email: user?.email ?? 'null',
+        upCampus: UPCampuses.upDiliman,
+        dateCreated: DateTime.now(),
       );
 
       // Save the other user account details on the database.
