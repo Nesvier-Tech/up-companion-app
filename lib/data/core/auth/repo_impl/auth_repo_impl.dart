@@ -1,15 +1,22 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 
 import '../../../../domain/core/auth/entities/user_entity.dart';
 import '../../../../domain/core/auth/repo_intf/auth_repo_intf.dart';
 import '../../../../utils/failures/failure_intf.dart';
 import '../../../../utils/failures/firebase_auth_failure.dart';
+import '../../../../utils/failures/firebase_firestore_failure.dart';
 
 class AuthRepoImpl implements AuthRepoIntf {
   final FirebaseAuth firebaseAuth;
+  final FirebaseFirestore firebaseFirestore;
 
-  const AuthRepoImpl({required this.firebaseAuth});
+  const AuthRepoImpl({
+    required this.firebaseAuth,
+    required this.firebaseFirestore,
+  });
 
   @override
   Future<Either<FailureIntf, UserEntity>> createUserWithEmailAndPassword({
@@ -19,13 +26,17 @@ class AuthRepoImpl implements AuthRepoIntf {
     late final UserCredential userCredential;
     late final User? user;
     late final UserEntity userEntity;
+    late final Either<FailureIntf, UserEntity> returnValue;
+    late final Either<FailureIntf, void> response;
 
     try {
+      // Try to create the user account.
       userCredential = await firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
 
+      // Build the user entity.
       user = userCredential.user;
       userEntity = UserEntity(
         id: user?.uid ?? 'invalid-id',
@@ -33,7 +44,15 @@ class AuthRepoImpl implements AuthRepoIntf {
         email: user?.email ?? 'null',
       );
 
-      return Right(userEntity);
+      // Save the other user account details on the database.
+      response = await _addNewUserData(userEntity: userEntity);
+      response.fold(
+        (firebaseFirestoreFailure) =>
+            returnValue = Left(firebaseFirestoreFailure),
+        (_) => returnValue = Right(userEntity),
+      );
+
+      return returnValue;
     } on FirebaseAuthException catch (error) {
       return Left(FirebaseAuthFailure(
         properties: {
@@ -42,6 +61,7 @@ class AuthRepoImpl implements AuthRepoIntf {
         },
       ));
     } catch (error) {
+      // For unknown firebase auth exceptions.
       return Left(FirebaseAuthFailure(
         properties: {'raw-error': error.toString()},
       ));
@@ -52,5 +72,22 @@ class AuthRepoImpl implements AuthRepoIntf {
   Either<FailureIntf, UserEntity> getCurrentUser() {
     // TODO: implement getCurrentUser
     throw UnimplementedError();
+  }
+
+  Future<Either<FailureIntf, void>> _addNewUserData({
+    required UserEntity userEntity,
+  }) async {
+    final db = firebaseFirestore;
+    final CollectionReference<Map<String, dynamic>> userCollection =
+        db.collection('users');
+
+    try {
+      await userCollection.doc(userEntity.id).set(userEntity.toJson());
+
+      // ignore: void_checks
+      return const Right(VoidCallback);
+    } catch (error, stackTrace) {
+      return const Left(FirebaseFirestoreFailure());
+    }
   }
 }

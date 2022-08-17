@@ -38,13 +38,15 @@ void init() {
 
   // Repositories
   sl.registerLazySingleton<AuthRepoIntf>(
-    () => AuthRepoImpl(firebaseAuth: sl()),
+    () => AuthRepoImpl(
+      firebaseAuth: sl(),
+      firebaseFirestore: sl(),
+    ),
   );
 
   //* External
   // Firebase Auth
-  final firebaseAuth = FirebaseAuth.instance;
-  sl.registerLazySingleton(() => firebaseAuth);
+  sl.registerLazySingleton(() => FirebaseAuth.instance);
 
   // Cloud Firestore
   sl.registerLazySingleton(() => FirebaseFirestore.instance);
