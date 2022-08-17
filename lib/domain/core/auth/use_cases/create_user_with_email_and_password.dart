@@ -9,7 +9,7 @@ class CreateUserWithEmailAndPassword {
 
   final AuthRepoIntf authRepo;
 
-  Future<Either<FailureIntf, UserEntity>> call({
+  Future<Either<FailureIntf<Params>, UserEntity>> call({
     required String email,
     required String password,
   }) async {

@@ -33,6 +33,8 @@ class UserEntity extends Equatable {
       'id': id,
       'username': username,
       'email': email,
+      'upCampus': upCampus,
+      'dateCreated': Timestamp.fromDate(dateCreated),
     };
   }
 

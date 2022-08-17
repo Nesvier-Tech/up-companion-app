@@ -1,7 +1,19 @@
 import 'failure_intf.dart';
 
-class FirebaseFirestoreFailure extends FailureIntf {
-  const FirebaseFirestoreFailure({
-    Map<String, dynamic> properties = const <String, dynamic>{},
-  }) : super(properties: properties);
+class FirebaseFirestoreFailure extends FailureIntf<Params> {
+  FirebaseFirestoreFailure({
+    required String errorCode,
+    required String errorMsg,
+    required String rootCause,
+    Object? error,
+    StackTrace? stackTrace,
+  }) : super(
+          params: Params(
+            errorCode: errorCode,
+            errorMsg: errorMsg,
+            rootCause: rootCause,
+            error: error,
+            stackTrace: stackTrace,
+          ),
+        );
 }

@@ -1,30 +1,30 @@
 part of 'login_cubit.dart';
 
-abstract class LoginState extends Equatable {
-  final Map<String, dynamic> properties;
+abstract class LoginState<ParamType> extends Equatable {
+  const LoginState({required this.params});
 
-  const LoginState({this.properties = const <String, dynamic>{}});
+  final ParamType params;
 
   @override
-  List<Object> get props => [properties];
+  List<Object> get props => [params as Object];
 }
 
 class LoginInitial extends LoginState {
-  const LoginInitial();
+  const LoginInitial() : super(params: const NoParams());
 }
 
 class LoginLoadInProgress extends LoginState {
-  const LoginLoadInProgress();
+  const LoginLoadInProgress() : super(params: const NoParams());
 }
 
-class LoginLoadSuccess extends LoginState {
-  LoginLoadSuccess({
-    required UserEntity userEntity,
-  }) : super(properties: {'user-entity': userEntity});
+class LoginLoadSuccess extends LoginState<SuccessStateParams> {
+  const LoginLoadSuccess({
+    required SuccessStateParams params,
+  }) : super(params: params);
 }
 
-class LoginLoadFailure extends LoginState {
-  LoginLoadFailure({
-    required FailureIntf failure,
-  }) : super(properties: {'failure': failure});
+class LoginLoadFailure extends LoginState<FailureStateParams> {
+  const LoginLoadFailure({
+    required FailureStateParams params,
+  }) : super(params: params);
 }

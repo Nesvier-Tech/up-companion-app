@@ -1,16 +1,21 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:up_companion_app/domain/core/auth/entities/user_entity.dart';
+import 'package:up_companion_app/utils/constants/up_campuses.dart';
 
 void main() {
   late final String tId;
   late final String tUsername;
   late final String tEmail;
+  late final UPCampuses tUpCampus;
+  late final DateTime tDateCreated;
 
   setUpAll(() {
     tId = '1';
     tUsername = 'Qubits';
     tEmail = 'qubits@gmail.com';
+    tUpCampus = UPCampuses.upDiliman;
+    tDateCreated = DateTime.now();
   });
 
   test('UserEntity should extend Equatable.', () {
@@ -19,6 +24,8 @@ void main() {
       id: tId,
       username: tUsername,
       email: tEmail,
+      upCampus: tUpCampus,
+      dateCreated: tDateCreated,
     );
 
     //* Assert
@@ -34,6 +41,8 @@ void main() {
         id: tId,
         username: tUsername,
         email: tEmail,
+        upCampus: tUpCampus,
+        dateCreated: tDateCreated,
       );
 
       //* Assert

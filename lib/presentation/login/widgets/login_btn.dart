@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:up_companion_app/domain/core/auth/entities/user_entity.dart';
 import 'package:up_companion_app/presentation/core/loading/loading_dialog.dart';
+import 'package:up_companion_app/presentation/login/state_holders/cubit/state_params.dart';
+import 'package:up_companion_app/utils/failures/failure_intf.dart';
 import 'package:up_companion_app/utils/failures/firebase_auth_failure.dart';
 
 import '../../../utils/service_locators/injection_container.dart';
@@ -39,28 +41,32 @@ class LoginBtn extends StatelessWidget {
                 } else if (state is LoginLoadSuccess) {
                   Navigator.pop(context);
 
-                  final UserEntity userEntity = state.properties['user-entity'];
-
+                  final SuccessStateParams params = state.params;
                   _showDialog(
                     context: context,
-                    message: userEntity.email,
+                    rootCause: 'Firebase Auth',
+                    errorCode: params.id,
+                    errorMsg: params.email,
                   );
                 } else if (state is LoginLoadFailure) {
                   Navigator.pop(context);
 
-                  final FirebaseAuthFailure failure =
-                      state.properties['failure'];
+                  final FailureStateParams params = state.params;
 
                   _showDialog(
                     context: context,
-                    message: failure.properties['message'],
+                    rootCause: params.rootCause,
+                    errorCode: params.errorCode,
+                    errorMsg: params.errorMsg,
                   );
                 } else {
                   Navigator.pop(context);
 
                   _showDialog(
                     context: context,
-                    message: 'Unknown Error',
+                    rootCause: 'Unknown Cause',
+                    errorCode: '500',
+                    errorMsg: 'An unknown error has occurred.',
                   );
                 }
               },
@@ -92,14 +98,21 @@ class LoginBtn extends StatelessWidget {
 
   Future<String?> _showDialog({
     required BuildContext context,
-    required String message,
+    required String errorMsg,
+    required String errorCode,
+    required String rootCause,
   }) async {
     return showDialog<String>(
       context: context,
       barrierDismissible: false,
       builder: (context) => AlertDialog(
-        title: const Text('Firebase Auth Response'),
-        content: Text(message),
+        title: Text('$rootCause Response'),
+        content: Column(
+          children: [
+            Text('Error code: $errorCode'),
+            Text('Error message: $errorMsg'),
+          ],
+        ),
         actions: <Widget>[
           TextButton(
             onPressed: () => Navigator.pop(context, 'Cancel'),

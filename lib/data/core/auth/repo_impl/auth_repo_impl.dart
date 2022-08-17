@@ -2,10 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
-import 'package:up_companion_app/utils/constants/up_campuses.dart';
 
 import '../../../../domain/core/auth/entities/user_entity.dart';
 import '../../../../domain/core/auth/repo_intf/auth_repo_intf.dart';
+import '../../../../utils/constants/up_campuses.dart';
 import '../../../../utils/failures/failure_intf.dart';
 import '../../../../utils/failures/firebase_auth_failure.dart';
 import '../../../../utils/failures/firebase_firestore_failure.dart';
@@ -20,15 +20,16 @@ class AuthRepoImpl implements AuthRepoIntf {
   });
 
   @override
-  Future<Either<FailureIntf, UserEntity>> createUserWithEmailAndPassword({
+  Future<Either<FailureIntf<Params>, UserEntity>>
+      createUserWithEmailAndPassword({
     required String email,
     required String password,
   }) async {
     late final UserCredential userCredential;
     late final User? user;
     late final UserEntity userEntity;
-    late final Either<FailureIntf, UserEntity> returnValue;
-    late final Either<FailureIntf, void> response;
+    late final Either<FailureIntf<Params>, UserEntity> returnValue;
+    late final Either<FailureIntf<Params>, void> response;
 
     try {
       // Try to create the user account.
@@ -57,16 +58,24 @@ class AuthRepoImpl implements AuthRepoIntf {
 
       return returnValue;
     } on FirebaseAuthException catch (error) {
-      return Left(FirebaseAuthFailure(
-        properties: {
-          'code': error.code,
-          'message': error.message,
-        },
-      ));
-    } catch (error) {
+      // Utilizing FirebaseAuth's built-in exception.
+      return Left(
+        FirebaseAuthFailure(
+            errorCode: error.code,
+            errorMsg: error.message ?? 'null',
+            rootCause: 'Firebase Auth'),
+      );
+    } catch (error, stackTrace) {
       // For unknown firebase auth exceptions.
+      // 'The 500 status code, or Internal Server Error, means that server
+      // cannot process the request for an unknown reason.' - (see Ref.)
+      // Ref: https://www.digitalocean.com/community/tutorials/how-to-troubleshoot-common-http-error-codes
       return Left(FirebaseAuthFailure(
-        properties: {'raw-error': error.toString()},
+        errorCode: '500',
+        errorMsg: 'An unknown error has occurred.',
+        error: error,
+        rootCause: 'Firebase Auth',
+        stackTrace: stackTrace,
       ));
     }
   }
@@ -77,20 +86,30 @@ class AuthRepoImpl implements AuthRepoIntf {
     throw UnimplementedError();
   }
 
-  Future<Either<FailureIntf, void>> _addNewUserData({
+  Future<Either<FailureIntf<Params>, void>> _addNewUserData({
     required UserEntity userEntity,
   }) async {
-    final db = firebaseFirestore;
-    final CollectionReference<Map<String, dynamic>> userCollection =
-        db.collection('users');
+    late final FirebaseFirestore db;
+    late final CollectionReference<Map<String, dynamic>> userCollection;
+
+    // Get the 'users' database collection reference.
+    db = firebaseFirestore;
+    userCollection = db.collection('users');
 
     try {
+      // Try to add the user data to the database.
       await userCollection.doc(userEntity.id).set(userEntity.toJson());
 
       // ignore: void_checks
       return const Right(VoidCallback);
     } catch (error, stackTrace) {
-      return const Left(FirebaseFirestoreFailure());
+      return Left(FirebaseFirestoreFailure(
+        errorCode: '500',
+        errorMsg: 'An unknown error has occurred.',
+        rootCause: 'Firebase Firestore',
+        error: error,
+        stackTrace: stackTrace,
+      ));
     }
   }
 }

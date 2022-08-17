@@ -6,7 +6,8 @@ import '../entities/user_entity.dart';
 abstract class AuthRepoIntf {
   const AuthRepoIntf();
 
-  Future<Either<FailureIntf, UserEntity>> createUserWithEmailAndPassword({
+  Future<Either<FailureIntf<Params>, UserEntity>>
+      createUserWithEmailAndPassword({
     required String email,
     required String password,
   });
