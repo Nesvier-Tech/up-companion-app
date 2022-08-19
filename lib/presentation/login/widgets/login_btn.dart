@@ -101,17 +101,27 @@ class LoginBtn extends StatelessWidget {
     required String errorMsg,
     required String errorCode,
     required String rootCause,
+    String? otherDetails,
+    StackTrace? stackTrace,
   }) async {
     return showDialog<String>(
       context: context,
       barrierDismissible: false,
       builder: (context) => AlertDialog(
         title: Text('$rootCause Response'),
-        content: Column(
-          children: [
-            Text('Error code: $errorCode'),
-            Text('Error message: $errorMsg'),
-          ],
+        content: SizedBox(
+          height: 100,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Error code: $errorCode'),
+                Text('Error message: $errorMsg'),
+                if (otherDetails != null) Text('Other details: $otherDetails'),
+                if (stackTrace != null) Text('Stacktrace: $stackTrace'),
+              ],
+            ),
+          ),
         ),
         actions: <Widget>[
           TextButton(

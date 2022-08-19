@@ -2,8 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
+import 'package:up_companion_app/data/core/auth/models/user_model.dart';
+import 'package:up_companion_app/domain/core/auth/entities/user_entity.dart';
 
-import '../../../../domain/core/auth/entities/user_entity.dart';
 import '../../../../domain/core/auth/repo_intf/auth_repo_intf.dart';
 import '../../../../utils/constants/up_campuses.dart';
 import '../../../../utils/failures/failure_intf.dart';
@@ -28,6 +29,7 @@ class AuthRepoImpl implements AuthRepoIntf {
     late final UserCredential userCredential;
     late final User? user;
     late final UserEntity userEntity;
+    late final UserModel userModel;
     late final Either<FailureIntf<Params>, UserEntity> returnValue;
     late final Either<FailureIntf<Params>, void> response;
 
@@ -38,9 +40,9 @@ class AuthRepoImpl implements AuthRepoIntf {
         password: password,
       );
 
-      // Build the user entity.
+      // Build the user model.
       user = userCredential.user;
-      userEntity = UserEntity(
+      userModel = UserModel(
         id: user?.uid ?? 'null',
         username: user?.displayName ?? 'null',
         email: user?.email ?? 'null',
@@ -49,11 +51,23 @@ class AuthRepoImpl implements AuthRepoIntf {
       );
 
       // Save the other user account details on the database.
-      response = await _addNewUserData(userEntity: userEntity);
+      response = await _addNewUserData(userModel: userModel);
       response.fold(
         (firebaseFirestoreFailure) =>
             returnValue = Left(firebaseFirestoreFailure),
-        (_) => returnValue = Right(userEntity),
+        (_) {
+          // Build the user entity if saving the other user data in the
+          // database was successful.
+          userEntity = UserEntity(
+            id: user?.uid ?? 'null',
+            username: user?.displayName ?? 'null',
+            email: user?.email ?? 'null',
+            upCampus: UPCampuses.upDiliman,
+            dateCreated: DateTime.now(),
+          );
+
+          returnValue = Right(userEntity);
+        },
       );
 
       return returnValue;
@@ -87,7 +101,7 @@ class AuthRepoImpl implements AuthRepoIntf {
   }
 
   Future<Either<FailureIntf<Params>, void>> _addNewUserData({
-    required UserEntity userEntity,
+    required UserModel userModel,
   }) async {
     late final FirebaseFirestore db;
     late final CollectionReference<Map<String, dynamic>> userCollection;
@@ -98,14 +112,14 @@ class AuthRepoImpl implements AuthRepoIntf {
 
     try {
       // Try to add the user data to the database.
-      await userCollection.doc(userEntity.id).set(userEntity.toJson());
+      await userCollection.doc(userModel.id).set(userModel.toJson());
 
       // ignore: void_checks
       return const Right(VoidCallback);
     } catch (error, stackTrace) {
       return Left(FirebaseFirestoreFailure(
         errorCode: '500',
-        errorMsg: 'An unknown error has occurred.',
+        errorMsg: 'An unknown error has occurred. ($error)\n$stackTrace',
         rootCause: 'Firebase Firestore',
         error: error,
         stackTrace: stackTrace,
