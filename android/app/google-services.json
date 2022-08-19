@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "487341729545-lvgjd1eqjjnnhf83oen33ago2m905f0k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nesvier.up_companion_app",
+            "certificate_hash": "4f02bb5296288d19d7a58069f672386216d676a8"
+          }
+        },
+        {
           "client_id": "487341729545-lo492dg3qbcetf67ajm5ajkvudullj3o.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -31,10 +39,10 @@
               "client_type": 3
             },
             {
-              "client_id": "487341729545-ug0og9qt18hhn422jqppceo2ij2m727q.apps.googleusercontent.com",
+              "client_id": "487341729545-75agpn83qf33mvl5nb10kvj6e96ksrni.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.nesvier.upcapp.upCompanionApp"
+                "bundle_id": "com.nesvier.upCompanionApp"
               }
             }
           ]
