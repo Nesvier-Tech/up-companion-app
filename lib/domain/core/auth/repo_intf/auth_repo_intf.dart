@@ -14,4 +14,6 @@ abstract class AuthRepoIntf {
   });
 
   Either<FailureIntf<ParamsIntf>, UserEntity> getCurrentUser();
+
+  Stream listenOnAuthStateChanges();
 }

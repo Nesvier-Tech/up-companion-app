@@ -130,4 +130,9 @@ class AuthRepoImpl implements AuthRepoIntf {
       ));
     }
   }
+
+  @override
+  Stream<User?> listenOnAuthStateChanges() {
+    return firebaseAuth.authStateChanges();
+  }
 }
