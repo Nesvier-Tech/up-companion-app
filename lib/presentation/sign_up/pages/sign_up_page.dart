@@ -12,7 +12,7 @@ class SignUpPage extends StatelessWidget {
       body: Center(
         child: Form(
             child: Column(
-          children: <Widget>[],
+          children: const <Widget>[],
         )),
       ),
     );

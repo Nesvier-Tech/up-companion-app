@@ -1,18 +1,21 @@
+import '../params/failure_base_params.dart';
 import 'failure_intf.dart';
 
-class FirebaseAuthFailure extends FailureIntf<Params> {
+class FirebaseAuthFailure extends FailureIntf<FailureBaseParams> {
   FirebaseAuthFailure({
     required String errorCode,
     required String errorMsg,
-    required String rootCause,
-    Object? error,
+    required String errorSource,
+    String? otherDetails,
+    Object? errorObj,
     StackTrace? stackTrace,
   }) : super(
-          params: Params(
+          params: FailureBaseParams(
             errorCode: errorCode,
             errorMsg: errorMsg,
-            rootCause: rootCause,
-            error: error,
+            errorSource: errorSource,
+            otherDetails: otherDetails,
+            errorObj: errorObj,
             stackTrace: stackTrace,
           ),
         );

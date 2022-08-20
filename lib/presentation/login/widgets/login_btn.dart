@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:up_companion_app/domain/core/auth/entities/user_entity.dart';
-import 'package:up_companion_app/presentation/core/loading/loading_dialog.dart';
-import 'package:up_companion_app/presentation/login/state_holders/cubit/state_params.dart';
-import 'package:up_companion_app/utils/failures/failure_intf.dart';
-import 'package:up_companion_app/utils/failures/firebase_auth_failure.dart';
 
 import '../../../utils/service_locators/injection_container.dart';
+import '../../core/dialogs/dialogs.dart';
+import '../../core/loading/loading_dialog.dart';
 import '../state_holders/cubit/login_cubit.dart';
 
 class LoginBtn extends StatelessWidget {
@@ -41,32 +38,33 @@ class LoginBtn extends StatelessWidget {
                 } else if (state is LoginLoadSuccess) {
                   Navigator.pop(context);
 
-                  final SuccessStateParams params = state.params;
-                  _showDialog(
+                  Dialogs.showAboutUser(
                     context: context,
-                    rootCause: 'Firebase Auth',
-                    errorCode: params.id,
-                    errorMsg: params.email,
+                    title: 'Firebase Auth Response',
+                    id: state.id,
+                    username: state.username,
+                    email: state.email,
+                    upCampus: state.upCampus,
+                    dateCreated: state.dateCreated,
                   );
                 } else if (state is LoginLoadFailure) {
                   Navigator.pop(context);
 
-                  final FailureStateParams params = state.params;
-
-                  _showDialog(
+                  Dialogs.showError(
                     context: context,
-                    rootCause: params.rootCause,
-                    errorCode: params.errorCode,
-                    errorMsg: params.errorMsg,
+                    title: '${state.errorSource} Response',
+                    errorCode: state.errorCode,
+                    errorMsg: state.errorMsg,
+                    errorSource: state.errorSource,
                   );
                 } else {
                   Navigator.pop(context);
-
-                  _showDialog(
+                  Dialogs.showError(
                     context: context,
-                    rootCause: 'Unknown Cause',
+                    title: 'Unknown Error',
                     errorCode: '500',
-                    errorMsg: 'An unknown error has occurred.',
+                    errorMsg: 'Something unexpected have happened.',
+                    errorSource: 'Unknown',
                   );
                 }
               },
@@ -94,46 +92,5 @@ class LoginBtn extends StatelessWidget {
       _emailController.clear();
       _passwordController.clear();
     }
-  }
-
-  Future<String?> _showDialog({
-    required BuildContext context,
-    required String errorMsg,
-    required String errorCode,
-    required String rootCause,
-    String? otherDetails,
-    StackTrace? stackTrace,
-  }) async {
-    return showDialog<String>(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => AlertDialog(
-        title: Text('$rootCause Response'),
-        content: SizedBox(
-          height: 100,
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Error code: $errorCode'),
-                Text('Error message: $errorMsg'),
-                if (otherDetails != null) Text('Other details: $otherDetails'),
-                if (stackTrace != null) Text('Stacktrace: $stackTrace'),
-              ],
-            ),
-          ),
-        ),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () => Navigator.pop(context, 'Cancel'),
-            child: const Text('Cancel'),
-          ),
-          TextButton(
-            onPressed: () => Navigator.pop(context, 'Okay'),
-            child: const Text('Okay'),
-          ),
-        ],
-      ),
-    );
   }
 }

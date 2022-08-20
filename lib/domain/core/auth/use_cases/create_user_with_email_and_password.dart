@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:up_companion_app/utils/params/params_intf.dart';
 
 import '../../../../utils/failures/failure_intf.dart';
 import '../entities/user_entity.dart';
@@ -9,7 +10,7 @@ class CreateUserWithEmailAndPassword {
 
   final AuthRepoIntf authRepo;
 
-  Future<Either<FailureIntf<Params>, UserEntity>> call({
+  Future<Either<FailureIntf<ParamsIntf>, UserEntity>> call({
     required String email,
     required String password,
   }) async {
