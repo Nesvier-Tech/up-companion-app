@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../utils/service_locators/injection_container.dart';
+import '../../../service_locator/injection_container.dart';
 import '../../core/dialogs/dialogs.dart';
 import '../../core/loading/loading_dialog.dart';
 import '../state_holders/cubit/login_cubit.dart';
+import '../state_holders/states/failure_state.dart';
+import '../state_holders/states/user_state.dart';
 
 class LoginBtn extends StatelessWidget {
   const LoginBtn({
@@ -38,24 +40,26 @@ class LoginBtn extends StatelessWidget {
                 } else if (state is LoginLoadSuccess) {
                   Navigator.pop(context);
 
+                  final UserState userState = state.userState;
                   Dialogs.showAboutUser(
                     context: context,
                     title: 'Firebase Auth Response',
-                    id: state.id,
-                    username: state.username,
-                    email: state.email,
-                    upCampus: state.upCampus,
-                    dateCreated: state.dateCreated,
+                    id: userState.id,
+                    username: userState.username,
+                    email: userState.email,
+                    upCampus: userState.upCampus,
+                    dateCreated: userState.dateCreated,
                   );
                 } else if (state is LoginLoadFailure) {
                   Navigator.pop(context);
 
+                  final FailureState failureState = state.failureState;
                   Dialogs.showError(
                     context: context,
-                    title: '${state.errorSource} Response',
-                    errorCode: state.errorCode,
-                    errorMsg: state.errorMsg,
-                    errorSource: state.errorSource,
+                    title: '${failureState.errorSource} Response',
+                    errorCode: failureState.errorCode,
+                    errorMsg: failureState.errorMsg,
+                    errorSource: failureState.errorSource,
                   );
                 } else {
                   Navigator.pop(context);

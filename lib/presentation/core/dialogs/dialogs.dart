@@ -4,7 +4,7 @@ part 'show_about_user.dart';
 part 'show_error.dart';
 
 class Dialogs {
-  const Dialogs();
+  const Dialogs._();
 
   static Future<String?> showAboutUser({
     required BuildContext context,

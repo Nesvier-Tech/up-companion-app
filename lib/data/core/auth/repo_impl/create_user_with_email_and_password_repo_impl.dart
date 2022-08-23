@@ -9,10 +9,10 @@ import '../../../../utils/constants/up_campuses.dart';
 import '../../../../utils/failures/failure_intf.dart';
 import '../../../../utils/failures/firebase_auth_failure.dart';
 import '../../../../utils/failures/firebase_firestore_failure.dart';
-import '../../../../utils/params/params_intf.dart';
+import '../../../../utils/params/failure_base_params.dart';
 import '../models/user_model.dart';
 
-typedef FutureEitherVoid = Future<Either<FailureIntf<ParamsIntf>, void>>;
+typedef FutureEitherVoid = Future<Either<FailureIntf<FailureBaseParams>, void>>;
 
 class CreateUserWithEmailAndPasswordRepoImpl {
   const CreateUserWithEmailAndPasswordRepoImpl({
@@ -31,8 +31,8 @@ class CreateUserWithEmailAndPasswordRepoImpl {
     late final User? user;
     late final UserEntity userEntity;
     late final UserModel userModel;
-    late final Either<FailureIntf<ParamsIntf>, UserEntity> returnValue;
-    late final Either<FailureIntf<ParamsIntf>, void> response;
+    late final Either<FailureIntf<FailureBaseParams>, UserEntity> returnValue;
+    late final Either<FailureIntf<FailureBaseParams>, void> response;
 
     try {
       // Try to create the user account.

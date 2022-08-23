@@ -1,3 +1,4 @@
+// ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
@@ -7,7 +8,7 @@ part 'auth_status_event.dart';
 part 'auth_status_state.dart';
 
 class AuthStatusBloc extends Bloc<AuthStatusEvent, AuthStatusState> {
-  AuthStatusBloc() : super(AuthStatusInitial()) {
+  AuthStatusBloc() : super(const AuthStatusInitial()) {
     on<AuthStatusStarted>((event, emit) {
       print('AuthStatusStarted');
     });

@@ -85,6 +85,10 @@ dependencies:
   # data-driven routes and more.
   go_router: ^4.2.7
 
+  # Contains code to deal with internationalized/localized messages, date and number formatting
+  # and parsing, bi-directional text, and other internationalization issues.
+  intl: ^0.17.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

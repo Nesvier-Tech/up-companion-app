@@ -5,7 +5,7 @@ import 'package:permission_handler/permission_handler.dart';
 
 import 'firebase_options.dart';
 import 'presentation/core/router/router.dart';
-import 'utils/service_locators/injection_container.dart' as di;
+import 'service_locator/injection_container.dart' as di;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

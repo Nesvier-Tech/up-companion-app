@@ -19,48 +19,19 @@ class LoginLoadInProgress extends LoginState {
 }
 
 class LoginLoadSuccess extends LoginState {
-  const LoginLoadSuccess({
-    required this.id,
-    required this.username,
-    required this.email,
-    required this.upCampus,
-    required this.dateCreated,
-  });
+  const LoginLoadSuccess({required this.userState});
 
-  final String id;
-  final String username;
-  final String email;
-  final String upCampus;
-  final String dateCreated;
+  final UserState userState;
 
   @override
-  List<Object?> get props => [id, username, email, upCampus, dateCreated];
+  List<Object> get props => [userState];
 }
 
 class LoginLoadFailure extends LoginState {
-  const LoginLoadFailure({
-    required this.errorCode,
-    required this.errorMsg,
-    required this.errorSource,
-    this.otherDetails,
-    this.errorObj,
-    this.stackTrace,
-  });
+  const LoginLoadFailure({required this.failureState});
 
-  final String errorCode;
-  final String errorMsg;
-  final String errorSource;
-  final String? otherDetails;
-  final Object? errorObj;
-  final StackTrace? stackTrace;
+  final FailureState failureState;
 
   @override
-  List<Object?> get props => [
-        errorCode,
-        errorMsg,
-        errorSource,
-        otherDetails,
-        errorObj,
-        stackTrace,
-      ];
+  List<Object> get props => [failureState];
 }
