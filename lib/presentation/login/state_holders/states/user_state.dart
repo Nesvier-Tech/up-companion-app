@@ -24,7 +24,7 @@ class UserState extends Equatable {
       id: userEntity.id,
       username: userEntity.username,
       email: userEntity.email,
-      upCampus: EnumToStr.convertUPCampus(userEntity.upCampus),
+      upCampus: EnumToStr.convertUPCampusEnumToStr(userEntity.upCampus),
       dateCreated: DateTimeToStr.convertToYMMMD(userEntity.dateCreated),
     );
   }

@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../../../domain/core/auth/entities/user_entity.dart';
-import '../../../../utils/constants/up_campuses.dart';
+import '../../../../utils/constants/enums/up_campuses.dart';
 
 class UserModel extends UserEntity {
   const UserModel({

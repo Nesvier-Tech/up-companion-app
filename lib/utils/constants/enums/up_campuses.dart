@@ -7,4 +7,5 @@ enum UPCampuses {
   upMindanao,
   upBaguio,
   upCebu,
+  unknown,
 }

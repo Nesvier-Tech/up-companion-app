@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 
 import '../../../../domain/core/auth/entities/user_entity.dart';
 import '../../../../domain/core/auth/repo_intf/auth_repo_intf.dart';
-import '../../../../utils/constants/up_campuses.dart';
+import '../../../../utils/constants/enums/up_campuses.dart';
 import '../../../../utils/failures/failure_intf.dart';
 import '../../../../utils/failures/firebase_auth_failure.dart';
 import '../../../../utils/failures/firebase_firestore_failure.dart';

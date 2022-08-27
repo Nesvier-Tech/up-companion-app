@@ -1,7 +1,7 @@
-import '../../constants/up_campuses.dart';
+import '../../constants/enums/up_campuses.dart';
 
-class ConvertUPCampus {
-  const ConvertUPCampus();
+class ConvertUPCampusEnumToStr {
+  const ConvertUPCampusEnumToStr();
 
   String call(UPCampuses upCampus) {
     switch (upCampus) {
@@ -21,6 +21,7 @@ class ConvertUPCampus {
         return 'UP Open University';
       case UPCampuses.upVisayas:
         return 'UP Visayas';
+      case UPCampuses.unknown:
       default:
         return 'Unknown UP Campus';
     }

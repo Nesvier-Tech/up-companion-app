@@ -88,6 +88,7 @@ dependencies:
   # Contains code to deal with internationalized/localized messages, date and number formatting
   # and parsing, bi-directional text, and other internationalization issues.
   intl: ^0.17.0
+  modal_bottom_sheet: ^2.1.0
 
 dev_dependencies:
   flutter_test:

@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import '../../../../utils/constants/up_campuses.dart';
+import '../../../../utils/constants/enums/up_campuses.dart';
 
 class UserEntity extends Equatable {
   const UserEntity({

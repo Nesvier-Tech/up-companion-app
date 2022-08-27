@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:up_companion_app/utils/constants/up_campuses.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:up_companion_app/utils/constants/enums/up_campuses.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -8,9 +9,12 @@ class SignUpPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Sign-Up')),
-      body: const SignUpForm(),
+    return GestureDetector(
+      child: Scaffold(
+        appBar: AppBar(title: const Text('Sign-Up')),
+        body: const SignUpForm(),
+      ),
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
     );
   }
 }
@@ -101,12 +105,54 @@ class SignUpFormState extends State<SignUpForm> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text(
-                      'Privacy Policy',
-                      style: TextStyle(
-                        color: Theme.of(context).primaryColor,
-                        fontSize: 11,
-                        fontWeight: FontWeight.bold,
+                    GestureDetector(
+                      child: Text(
+                        'Privacy Policy',
+                        style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          fontSize: 11,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      onTap: () => showBarModalBottomSheet(
+                        context: context,
+                        builder: (context) {
+                          return SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.75,
+                            child: Padding(
+                              padding: const EdgeInsets.all(25),
+                              child: SingleChildScrollView(
+                                child: Column(
+                                  children: const <Widget>[
+                                    Text(
+                                      'Privacy Policy Statement',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 30,
+                                      ),
+                                    ),
+                                    SizedBox(height: 15),
+                                    Text(
+                                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut sem nulla pharetra diam sit amet. Nisi quis eleifend quam adipiscing vitae proin sagittis nisl. Tortor pretium viverra suspendisse potenti nullam ac tortor. Magna etiam tempor orci eu lobortis. Pellentesque habitant morbi tristique senectus et netus et malesuada. Proin libero nunc consequat interdum varius sit amet mattis. At risus viverra adipiscing at. Auctor augue mauris augue neque gravida. Enim lobortis scelerisque fermentum dui. Amet mattis vulputate enim nulla. Vel facilisis volutpat est velit egestas dui. Aliquam eleifend mi in nulla posuere. Vitae nunc sed velit dignissim sodales ut eu sem. Egestas quis ipsum suspendisse ultrices gravida dictum fusce ut. A lacus vestibulum sed arcu non odio. Tellus at urna condimentum mattis pellentesque id. Ac odio tempor orci dapibus ultrices in. Dignissim diam quis enim lobortis scelerisque fermentum.',
+                                    ),
+                                    SizedBox(height: 25),
+                                    Text(
+                                      'Other Details',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 30,
+                                      ),
+                                    ),
+                                    SizedBox(height: 15),
+                                    Text(
+                                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut sem nulla pharetra diam sit amet. Nisi quis eleifend quam adipiscing vitae proin sagittis nisl. Tortor pretium viverra suspendisse potenti nullam ac tortor. Magna etiam tempor orci eu lobortis. Pellentesque habitant morbi tristique senectus et netus et malesuada. Proin libero nunc consequat interdum varius sit amet mattis. At risus viverra adipiscing at. Auctor augue mauris augue neque gravida. Enim lobortis scelerisque fermentum dui. Amet mattis vulputate enim nulla. Vel facilisis volutpat est velit egestas dui. Aliquam eleifend mi in nulla posuere. Vitae nunc sed velit dignissim sodales ut eu sem. Egestas quis ipsum suspendisse ultrices gravida dictum fusce ut. A lacus vestibulum sed arcu non odio. Tellus at urna condimentum mattis pellentesque id. Ac odio tempor orci dapibus ultrices in. Dignissim diam quis enim lobortis scelerisque fermentum.',
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
+                        },
                       ),
                     ),
                     const Text(
