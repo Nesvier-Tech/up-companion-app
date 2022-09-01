@@ -26,3 +26,12 @@ class AuthStatusListenerSignedOut extends AuthStatusEvent {
   @override
   List<Object> get props => const [];
 }
+
+class AuthStatusListenerErrored extends AuthStatusEvent {
+  const AuthStatusListenerErrored({required this.failure});
+
+  final FirebaseAuthFailure failure;
+
+  @override
+  List<FirebaseAuthFailure> get props => [failure];
+}

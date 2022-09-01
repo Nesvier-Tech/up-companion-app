@@ -19,10 +19,19 @@ class AuthStatusGetInProgress extends AuthStatusState {
 }
 
 class AuthStatusGetSuccess extends AuthStatusState {
-  const AuthStatusGetSuccess({required this.authStatusEntity});
+  const AuthStatusGetSuccess({required this.authStatusState});
 
-  final AuthStatusEntity authStatusEntity;
+  final state.AuthStatusState authStatusState;
 
   @override
-  List<AuthStatusEntity> get props => [authStatusEntity];
+  List<state.AuthStatusState> get props => [authStatusState];
+}
+
+class AuthStatusGetFailure extends AuthStatusState {
+  const AuthStatusGetFailure({required this.failureState});
+
+  final FailureState failureState;
+
+  @override
+  List<FailureState> get props => [failureState];
 }

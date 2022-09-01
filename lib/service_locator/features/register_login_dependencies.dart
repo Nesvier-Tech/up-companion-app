@@ -4,6 +4,6 @@ import '../injection_container.dart';
 void registerLoginDependencies() {
   // Cubit
   sl.registerFactory(
-    () => LoginCubit(createUserWithEmailAndPasswordUseCase: sl()),
+    () => LoginCubit(createUserWithEmailAndPassword: sl()),
   );
 }

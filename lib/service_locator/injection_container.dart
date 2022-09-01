@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:up_companion_app/service_locator/features/register_splash_dependencies.dart';
 
 import 'core/register_auth_dependencies.dart';
 import 'core/register_network_dependencies.dart';
@@ -15,6 +16,7 @@ void init() {
 
   //* Features
   registerLoginDependencies();
+  registerSplashDependencies();
 
   //* Utils
   registerConvertorDependencies();

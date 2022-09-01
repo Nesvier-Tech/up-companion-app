@@ -5,7 +5,7 @@ import '../../../service_locator/injection_container.dart';
 import '../../core/dialogs/dialogs.dart';
 import '../../core/loading/loading_dialog.dart';
 import '../state_holders/cubit/login_cubit.dart';
-import '../state_holders/states/failure_state.dart';
+import '../../core/states/failure_state.dart';
 import '../state_holders/states/user_state.dart';
 
 class LoginBtn extends StatelessWidget {

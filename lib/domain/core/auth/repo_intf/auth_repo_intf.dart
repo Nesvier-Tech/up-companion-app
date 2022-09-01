@@ -10,8 +10,9 @@ import '../entities/user_entity.dart';
 typedef FutureEitherUserEntity
     = Future<Either<FailureIntf<FailureBaseParams>, UserEntity>>;
 typedef EitherUserEntity = Either<FailureIntf<FailureBaseParams>, UserEntity>;
-typedef StreamEitherAuthStatusEntity
-    = Stream<Either<FailureIntf<FailureBaseParams>, AuthStatusEntity>>;
+typedef EitherAuthStatusEntity
+    = Either<FailureIntf<FailureBaseParams>, AuthStatusEntity>;
+typedef StreamEitherAuthStatusEntity = Stream<EitherAuthStatusEntity>;
 
 abstract class AuthRepoIntf {
   const AuthRepoIntf();
@@ -23,7 +24,5 @@ abstract class AuthRepoIntf {
 
   EitherUserEntity getCurrentUser();
 
-  StreamEitherAuthStatusEntity listenOnAuthStateChanges({
-    required StreamController<AuthStatusEntity> controller,
-  });
+  StreamEitherAuthStatusEntity listenOnAuthStateChanges();
 }

@@ -4,15 +4,24 @@ import '../../../data/core/auth/repo_impl/get_current_user_repo_impl.dart';
 import '../../../data/core/auth/repo_impl/listen_on_auth_state_changes_repo_impl.dart';
 import '../../../domain/core/auth/repo_intf/auth_repo_intf.dart';
 import '../../../domain/core/auth/use_cases/create_user_with_email_and_password.dart';
+import '../../domain/core/auth/use_cases/get_current_user.dart';
+import '../../domain/core/auth/use_cases/listen_on_auth_state_changes.dart';
 import '../injection_container.dart';
 
 void registerAuthDependencies() {
-  // Use cases
+  //* Use cases
   sl.registerLazySingleton(
     () => CreateUserWithEmailAndPassword(authRepo: sl()),
   );
 
-  // Repositories
+  sl.registerLazySingleton(() => GetCurrentUser(authRepo: sl()));
+
+  sl.registerLazySingleton(() => ListenOnAuthStateChanges(
+        authRepo: sl(),
+        authStatusBloc: sl(),
+      ));
+
+  //* Repositories
   sl.registerLazySingleton<AuthRepoIntf>(
     () => const AuthRepoImpl(),
   );

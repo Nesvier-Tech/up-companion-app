@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:up_companion_app/presentation/errors/pages/page_not_found_page.dart';
+import 'package:up_companion_app/presentation/splash/splash_page.dart';
 
 import '../../login/pages/login_page.dart';
 import '../../sign_up/pages/sign_up_page.dart';
 
 class HomePage extends StatelessWidget {
-  static const routeName = '/';
+  static const routeName = '/home-page';
 
   const HomePage({Key? key}) : super(key: key);
 
@@ -20,6 +21,11 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
+            ElevatedButton(
+              onPressed: () => context.go(SplashPage.routeName),
+              child: const Text('Splash Page'),
+            ),
+            const SizedBox(height: 10),
             ElevatedButton(
               onPressed: () => context.go(HomePage.routeName),
               child: const Text('Home Page'),

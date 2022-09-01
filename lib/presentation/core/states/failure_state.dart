@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
-import '../../../../utils/failures/failure_intf.dart';
-import '../../../../utils/params/failure_base_params.dart';
+import '../../../utils/failures/failure_intf.dart';
+import '../../../utils/params/failure_base_params.dart';
 
 class FailureState extends Equatable {
   const FailureState._({

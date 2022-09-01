@@ -2,7 +2,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-import 'package:up_companion_app/presentation/login/state_holders/states/failure_state.dart';
+import 'package:up_companion_app/presentation/core/states/failure_state.dart';
 import 'package:up_companion_app/presentation/login/state_holders/states/user_state.dart';
 
 import '../../../../domain/core/auth/entities/user_entity.dart';
@@ -16,10 +16,10 @@ part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit({
-    required this.createUserWithEmailAndPasswordUseCase,
+    required this.createUserWithEmailAndPassword,
   }) : super(const LoginInitial());
 
-  final CreateUserWithEmailAndPassword createUserWithEmailAndPasswordUseCase;
+  final CreateUserWithEmailAndPassword createUserWithEmailAndPassword;
 
   void loginUser({
     required String email,
@@ -39,7 +39,7 @@ class LoginCubit extends Cubit<LoginState> {
     }
 
     // Try creating the user account.
-    eitherUserEntity = await createUserWithEmailAndPasswordUseCase(
+    eitherUserEntity = await createUserWithEmailAndPassword(
       email: email,
       password: password,
     );

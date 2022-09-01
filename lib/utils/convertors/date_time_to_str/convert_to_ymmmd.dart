@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 class ConvertToYMMMD {
   const ConvertToYMMMD();
 
+  /// Example date formatting result: Jan 1, 2001.
   String call(DateTime dateTime) {
     return DateFormat.yMMMd().format(dateTime);
   }
